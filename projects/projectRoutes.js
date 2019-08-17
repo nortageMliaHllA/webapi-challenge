@@ -4,6 +4,7 @@ const projectModel = require('../data/helpers/projectModel');
 
 const router = express.Router();
 
+// GET /
 router.get('/', (req, res) => {
     projectModel.get()
         .then(projects => {
@@ -16,6 +17,8 @@ router.get('/', (req, res) => {
         });
     });
 });
+
+// GET/:ID /
 
 router.get('/:id', (req, res) => {
     projectModel.get(req.params.id)
@@ -30,6 +33,7 @@ router.get('/:id', (req, res) => {
     })
 })
 
+// POST /
 router.post('/', (req, res) => {
     if (req.body.name.length < 100) {
         projectModel.insert(req.body)
@@ -45,6 +49,7 @@ router.post('/', (req, res) => {
     }
 });
 
+// PUT/:ID /
 router.put("/:id", (req, res) => {
     const { id } = req.params;
     const { name, description, completed } = req.body;
@@ -74,3 +79,5 @@ router.delete("/:id", (req, res) => {
         });
     });
 });
+
+module.exports = router;

@@ -17,10 +17,12 @@ const express = require('express');
 const port = 7000;
 
 const server = express();
-// const projectModel = require('./projects/projectRoutes.js');
+const projectModel = require('./projects/projectRoutes.js');
+const actionModel = require('./actions/actionRoutes.js');
 
 server.use(express.json());
-// server.use('/projects', projectModel);
+server.use('/projects', projectModel);
+server.use('/actions', actionModel);
 
 
 
