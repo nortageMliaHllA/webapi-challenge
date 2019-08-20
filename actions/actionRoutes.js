@@ -38,6 +38,7 @@ router.get('/:id', (req, res) => {
     actionModel.get(id)
         .then(projectActions => {
           res.status(200).json(projectActions)
+        })
         .catch(err => {
             res.status(404).json({
                 err:err,
@@ -47,21 +48,18 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /
-router.post('/',(req, res) => {
+router.post('/', (req, res) => {
     const newAction = req.body;
     actionModel.insert(newAction)
         .then(addedAction => {
-            res.status(201).json(addedAction);
-        })   
+            res.status(201).json(addedAction)
+        })
         .catch(err => {
-            res.status(500).json({ 
-                err:err,
-                message: 'oh noes!'
-            });
-            
-        }) 
-    
-    })
+    res.status(500).json({ 
+        err:err,
+        message: 'Error!'
+        });
+    });
 });
 
 // PUT/:ID /
